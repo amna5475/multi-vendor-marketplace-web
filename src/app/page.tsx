@@ -105,7 +105,7 @@ export default function HomePage() {
         ) : offline ? (
           <EmptyState
             title="API is not reachable"
-            body={`${offline} Run the backend with Docker, then refresh this page.`}
+            body={`${offline} Start the marketplace API and confirm API_URL in .env.local (or Vercel env).`}
             action={<ButtonLink href="https://github.com/amna5475/Multi-Vendor-Ecommerce-API">Open the API repo</ButtonLink>}
           />
         ) : products.length === 0 ? (

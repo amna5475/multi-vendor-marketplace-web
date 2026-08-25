@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/lib/auth-context";
 import { useCart } from "@/lib/cart-context";
+import { API_DOCS_URL, API_HEALTH_URL, API_REPO_URL } from "@/lib/site";
 import { cn } from "./ui";
 
 const links = [
@@ -115,11 +116,9 @@ export function StorefrontFooter() {
         <div className="text-sm">
           <p className="font-semibold text-paper">Engineering</p>
           <div className="mt-2 grid gap-1 text-paper/60">
-            <a href="https://github.com/amna5475/Multi-Vendor-Ecommerce-API">
-              REST API
-            </a>
-            <a href="http://localhost:3000/api-docs">Swagger (local)</a>
-            <a href="http://localhost:3000/api/health">API health</a>
+            <a href={API_REPO_URL}>REST API</a>
+            {API_DOCS_URL ? <a href={API_DOCS_URL}>Swagger</a> : null}
+            {API_HEALTH_URL ? <a href={API_HEALTH_URL}>API health</a> : null}
           </div>
         </div>
       </div>

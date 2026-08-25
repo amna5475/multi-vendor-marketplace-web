@@ -1,7 +1,7 @@
 import type { ApiSuccess } from "./types";
 
-export const API_URL =
-  process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3000/api";
+/** Same-origin proxy. Next.js rewrites `/backend/*` to `API_URL`. */
+const API_BASE = "/backend";
 
 export class ApiError extends Error {
   constructor(
@@ -21,7 +21,7 @@ type RequestOptions = Omit<RequestInit, "body"> & {
 
 export async function api<T>(path: string, options: RequestOptions = {}): Promise<T> {
   const { token, body, headers, ...rest } = options;
-  const response = await fetch(`${API_URL}${path}`, {
+  const response = await fetch(`${API_BASE}${path}`, {
     ...rest,
     headers: {
       ...(body !== undefined ? { "Content-Type": "application/json" } : {}),
